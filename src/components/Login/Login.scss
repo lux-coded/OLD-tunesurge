@@ -1,0 +1,50 @@
+@import '../../styles/variables.scss';
+
+.welcome-header {
+  transition: $main-transition;
+  padding: 5% 20%;
+  text-align: center;
+
+  .welcome-quote {
+    margin-bottom: 10rem;
+  }
+
+  h1 {
+    font-size: 4rem;
+    font-weight: 500;
+    text-align: center;
+    color: white;
+  }
+
+  span {
+    font-weight: 700;
+    background: $main-gradient;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  a {
+    background-color: $main-color;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 0.3rem;
+    padding: 1rem;
+    transition: $main-transition;
+    text-decoration: none;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &:active {
+      cursor: pointer;
+      background-color: $main-color-lighter;
+    }
+
+    &:visited {
+      color: white;
+    }
+  }
+}

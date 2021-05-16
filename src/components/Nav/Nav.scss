@@ -1,0 +1,16 @@
+@import '../../styles/variables.scss';
+
+nav {
+  a {
+    text-decoration: none;
+  }
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 20%;
+  #nav-logo {
+    background: $main-gradient;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
