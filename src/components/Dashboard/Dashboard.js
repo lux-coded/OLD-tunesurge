@@ -1,16 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect, useSelector } from 'react-redux';
 import useAuth from '../useAuth.js';
 
 import './Dashboard.scss';
 
 const Dashboard = () => {
+  const [ token, setToken ] = useState('');
   const loginCode = useSelector(state => state.getLoginCode);
   // console.log(loginCode);
   const accessToken = useAuth(loginCode);
+  setToken(accessToken);
 
   return (
-    <section>
+    <section id='dashboard'>
       <h1>Dashboard</h1>
       <div>
         <h3>My Profile</h3>
