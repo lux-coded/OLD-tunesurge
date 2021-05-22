@@ -1,8 +1,50 @@
 @import '../../styles/variables.scss';
 
-#dashboard {
-  background-color: $background-secondary;
+#dashboard-container {
   padding: 2rem;
   margin: 2rem;
   color: $main-text-color;
+  border-radius: 0.5rem;
+  display: grid;
+  // width: 90%;
+  grid-template-columns: 1fr 5fr;
+  grid-gap: 1rem;
+
+  .dashboard-card {
+    border-radius: 0.5rem;
+    height: 700px;
+  }
+
+  #dashboard-sidebar {
+    background-color: $background-secondary;
+    padding: 1rem;
+  }
+
+  #dashboard-panel {
+    background-color: $background-secondary;
+  }
+
+  #dashboard-controls {
+    padding-top: 2rem;
+
+    h3 {
+      padding: 1rem;
+    }
+  }
+
+  #dashboard-profile {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 2rem;
+    border-radius: 0.5rem;
+    background: $background-main;
+    h1 {
+      padding: 0 1rem;
+    }
+
+    img {
+      width: 50px;
+      border-radius: 50%;
+    }
+  }
 }
