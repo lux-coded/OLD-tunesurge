@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import history from '../history.js';
 
 const useAuth = function (code) {
   const [ accessToken, setAccessToken ] = useState();
@@ -19,7 +20,9 @@ const useAuth = function (code) {
         setAccessToken(res.data.accessToken);
         setRefreshToken(res.data.refreshToken);
         setExpiresIn(res.data.expiresIn);
-        window.location = '/';
+        localStorage.setItem('accessToken', res.data.accessToken);
+        history.push(`/`);
+        // window.location = '/';
       })
       .catch((err) => {
         console.error(err);
@@ -39,12 +42,13 @@ const useAuth = function (code) {
           refreshToken,
         })
         .then((res) => {
-          console.log(res);
+          // console.log(res);
           setAccessToken(res.data.accessToken);
           setExpiresIn(res.data.expiresIn);
+          localStorage.setItem('accessToken', res.data.accessToken);
         })
         .catch((err) => {
-          console.error(err);
+          // console.error(err);
           window.location = '/';
         })
 

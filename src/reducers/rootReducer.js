@@ -1,8 +1,9 @@
 import { combineReducers } from 'redux';
-import getLoginCode from './getLoginCode.js';
+import { getLoginCode, getAccessToken } from './authReducer.js';
 
 const rootReducer = combineReducers({
-  getLoginCode
+  getLoginCode,
+  getAccessToken
 });
 
 export default rootReducer;

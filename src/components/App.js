@@ -5,7 +5,7 @@ import history from '../history.js';
 import Login from './Login/Login.js';
 import Dashboard from './Dashboard/Dashboard.js';
 import Nav from './Nav/Nav.js';
-import getLoginCode from '../actions/getLoginCode.js';
+import { getLoginCode } from '../actions/authActions.js';
 
 // console.log(code);
 

@@ -5,11 +5,11 @@ import useAuth from '../useAuth.js';
 import './Dashboard.scss';
 
 const Dashboard = () => {
-  const [ token, setToken ] = useState('');
+  // const [ accessToken, setAccessToken ] = useState();
   const loginCode = useSelector(state => state.getLoginCode);
   // console.log(loginCode);
   const accessToken = useAuth(loginCode);
-  setToken(accessToken);
+  console.log(accessToken);
 
   return (
     <section id='dashboard'>
@@ -19,7 +19,6 @@ const Dashboard = () => {
       </div>
       <div>
         <h3>Library</h3>
-        {/* <p>{this.props.getLoginCode}</p> */}
       </div>
     </section>
   );

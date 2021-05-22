@@ -1,5 +1,8 @@
 @import '../../styles/variables.scss';
 
-#id {
-  background-color: white;
+#dashboard {
+  background-color: $background-secondary;
+  padding: 2rem;
+  margin: 2rem;
+  color: $main-text-color;
 }
