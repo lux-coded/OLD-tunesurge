@@ -10,9 +10,24 @@
   grid-template-columns: 1fr 5fr;
   grid-gap: 1rem;
 
+  input {
+    margin-top: 1rem;
+    padding: 0.5rem;
+    font-size: 1.2rem;
+    border: 3px solid $background-terciary;
+    border-radius: 0.5rem;
+    background-color: $background-main;
+    color: white;
+    width: 100%;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
   .dashboard-card {
     border-radius: 0.5rem;
-    height: 700px;
+    height: 750px;
   }
 
   #dashboard-sidebar {
@@ -22,6 +37,7 @@
 
   #dashboard-panel {
     background-color: $background-secondary;
+    padding: 1rem;
   }
 
   #dashboard-controls {
