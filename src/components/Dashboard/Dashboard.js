@@ -1,19 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { connect, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
+import history from '../../history.js';
+
 import useAuth from '../useAuth.js';
+
+import SearchBar from '../SearchBar/SearchBar.js';
+import SearchResults from '../SearchResults/SearchResults.js';
 import getSearchResults from '../../actions/getSearchResults.js';
 
 import './Dashboard.scss';
 
-const Dashboard = ({ searchResults }) => {
+const Dashboard = ({ getSearchResults }) => {
   const [ displayName, setDisplayName ] = useState('');
   const [ avatar, setAvatar ] = useState();
   const [ query, setQuery ] = useState('');
   const loginCode = useSelector( state => state.getLoginCode );
-  // console.log(loginCode);
-  // setAccessToken(useAuth(loginCode));
-  // console.log(accessToken);
   const accessToken = useAuth( loginCode );
 
   // useEffect(() => {
@@ -33,6 +36,14 @@ const Dashboard = ({ searchResults }) => {
   //   })
   // }, [accessToken])
 
+  // let params = useParams();
+  // useEffect(() => {
+  //   // if (match.params.query) {
+  //   //   fetchSearchResults();
+  //   // }
+  //   // console.log(params);
+  // }, [params])
+
   useEffect(() => {
     if (!accessToken) return;
 
@@ -45,7 +56,7 @@ const Dashboard = ({ searchResults }) => {
       }
     })
     .then((res) => {
-      console.log(res);
+      // console.log(res);
       setDisplayName(res.data.display_name);
       setAvatar(res.data.images[0].url);
     })
@@ -54,24 +65,10 @@ const Dashboard = ({ searchResults }) => {
     })
   }, [ accessToken ]);
 
-  const fetchSearchResults = (event) => {
-    event.preventDefault();
-
-    axios('https://api.spotify.com/v1/search', {
-      headers: {
-        'Authorization': `Bearer ${accessToken}`,
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-      params: {
-        q: query,
-        type: 'album,artist,track',
-      }
-    })
-    .then(res => console.log(res))
-    .catch(error => console.log(error))
+  const fetchSearchResults = (query) => {
+    setQuery(query);
     getSearchResults(query, accessToken);
-    // console.log(searchResults);
+    history.push(`/search/${query}`);
   }
 
   return (
@@ -81,9 +78,7 @@ const Dashboard = ({ searchResults }) => {
           <img src={avatar} alt='avatar'></img>
           <h1>{displayName}</h1>
         </div>
-        <form onSubmit={fetchSearchResults} >
-          <input type='text' value={query} placeholder='Search...' onChange={(e) => setQuery(e.target.value)}></input>
-        </form>
+        <SearchBar onSubmit={fetchSearchResults}/>
         <div id='dashboard-controls'>
           <h3>My Profile</h3>
           <h3>Favorites</h3>
@@ -91,18 +86,20 @@ const Dashboard = ({ searchResults }) => {
         </div>
       </div>
       <div id='dashboard-panel' className='dashboard-card'>
-        <h3>Library</h3>
+        <SearchResults />
       </div>
     </section>
   );
 }
 
 const mapStateToProps = (state) => ({
-  searchResults: state.getSearchResults
+  getSearchResults: state.getSearchResults,
+  getAccessToken: state.getAccessToken
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  getSearchResults: (query, token) => dispatch(getSearchResults(query, token))
+  getSearchResults: (query, token) => dispatch(getSearchResults(query, token)),
+  getAccessToken: () => dispatch({ type: 'GET_ACCESS_TOKEN' })
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

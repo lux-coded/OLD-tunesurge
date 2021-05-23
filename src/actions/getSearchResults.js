@@ -20,7 +20,7 @@ const getSearchResults = (query, token) => {
       }
     })
     .then(res => {
-      console.log(res);
+      // console.log(res);
       dispatch(saveSearchResults(res))
     })
     // .then(data => dispatch(saveSearchResults(data)))

@@ -5,7 +5,7 @@ import history from '../history.js';
 import Login from './Login/Login.js';
 import Dashboard from './Dashboard/Dashboard.js';
 import Nav from './Nav/Nav.js';
-import { getLoginCode } from '../actions/authActions.js';
+import { getLoginCode, getAccessToken } from '../actions/authActions.js';
 
 // console.log(code);
 
@@ -13,8 +13,18 @@ import { getLoginCode } from '../actions/authActions.js';
 const code = new URLSearchParams(window.location.search).get('code');
 
 class App extends React.Component {
+  // state: { savedAccessToken: '' }
+
   componentDidMount() {
+    const savedAccessToken = localStorage.getItem('accessToken');
     this.props.getLoginCode(code);
+    this.props.getAccessToken(savedAccessToken);
+    // this.setState({ savedAccessToken: savedAccessToken });
+    // this.setState({ currentAccessToken: getAccessToken });
+  }
+
+  checkSession = () => {
+    if (this.state.savedAccessToken || code) return true;
   }
 
   render() {
@@ -23,6 +33,7 @@ class App extends React.Component {
         <Nav />
         <Switch>
           <Route path='/' exact component={code ? Dashboard : Login} />
+          <Route path='/search/:query' exact component={Dashboard} />
         </Switch>
       </Router>
     );
@@ -37,8 +48,13 @@ class App extends React.Component {
 //   getLoginCode: getLoginCode
 // });
 
+// const mapDispatchToProps = (dispatch) => ({
+//   getLoginCode,
+//   getAccessToken
+// })
+
 export default connect(
   null,
-  { getLoginCode }
+  {getLoginCode, getAccessToken}
 )
 (App);
