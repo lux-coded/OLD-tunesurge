@@ -1,21 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { connect, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, Route } from 'react-router-dom';
 import axios from 'axios';
 import history from '../../history.js';
 
 import useAuth from '../useAuth.js';
 
+import Profile from '../Profile/Profile.js';
 import SearchBar from '../SearchBar/SearchBar.js';
 import SearchResults from '../SearchResults/SearchResults.js';
+
 import getSearchResults from '../../actions/getSearchResults.js';
 
 import './Dashboard.scss';
 
-const Dashboard = ({ getSearchResults }) => {
+const Dashboard = ({ getSearchResults, stateSearchResults }) => {
   const [ displayName, setDisplayName ] = useState('');
   const [ avatar, setAvatar ] = useState();
   const [ query, setQuery ] = useState('');
+  // const [ searchResults, setSearchResults ] = useState();
   const loginCode = useSelector( state => state.getLoginCode );
   const accessToken = useAuth( loginCode );
 
@@ -46,6 +49,23 @@ const Dashboard = ({ getSearchResults }) => {
 
   useEffect(() => {
     if (!accessToken) return;
+    axios('https://api.spotify.com/v1/me/top/tracks', {
+      headers: {
+        'Authorization': `Bearer ${accessToken}`,
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      }
+    })
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+  }, [accessToken])
+
+  useEffect(() => {
+    if (!accessToken) return;
 
     axios('https://api.spotify.com/v1/me', {
       // method: 'GET',
@@ -68,6 +88,7 @@ const Dashboard = ({ getSearchResults }) => {
   const fetchSearchResults = (query) => {
     setQuery(query);
     getSearchResults(query, accessToken);
+    // setSearchResults(stateSearchResults.data);
     history.push(`/search/${query}`);
   }
 
@@ -86,15 +107,16 @@ const Dashboard = ({ getSearchResults }) => {
         </div>
       </div>
       <div id='dashboard-panel' className='dashboard-card'>
-        <SearchResults />
+        <Route path='/' exact component={Profile} />
+        <Route path='/search/:query' exact component={SearchResults} />
       </div>
     </section>
   );
 }
 
 const mapStateToProps = (state) => ({
-  getSearchResults: state.getSearchResults,
-  getAccessToken: state.getAccessToken
+  stateSearchResults: state.getSearchResults,
+  stateAccessToken: state.getAccessToken
 });
 
 const mapDispatchToProps = (dispatch) => ({

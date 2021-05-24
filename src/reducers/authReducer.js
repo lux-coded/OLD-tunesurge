@@ -2,9 +2,7 @@ import { GET_LOGIN_CODE } from '../actions/types.js';
 import { GET_ACCESS_TOKEN } from '../actions/types.js';
 
 const initialCode = '';
-if (localStorage.getItem('accessToken')) {
-  const initialToken = localStorage.getItem('accessToken');
-}
+const initialToken = '';
 
 export const getLoginCode = (state = initialCode, action) => {
   switch (action.type) {
