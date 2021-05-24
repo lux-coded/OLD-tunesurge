@@ -101,9 +101,21 @@ const Dashboard = ({ getSearchResults, stateSearchResults }) => {
         </div>
         <SearchBar onSubmit={fetchSearchResults}/>
         <div id='dashboard-controls'>
-          <h3>My Profile</h3>
-          <h3>Favorites</h3>
-          <h3>Recommended</h3>
+          <div className='dashboard-link'>
+            <span class="material-icons">
+              person
+            </span>
+            My Profile
+          </div>
+          <div className='dashboard-link'>
+            <span class="material-icons">
+              library_music
+            </span>
+            Playlists
+          </div>
+          <hr></hr>
+          <h4>Favorites</h4>
+          <h4>Recommended</h4>
         </div>
       </div>
       <div id='dashboard-panel' className='dashboard-card'>

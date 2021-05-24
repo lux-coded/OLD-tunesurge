@@ -2,7 +2,7 @@
 
 #dashboard-container {
   padding: 2rem;
-  margin: 2rem;
+  margin: 2rem 0;
   color: $main-text-color;
   border-radius: 0.5rem;
   display: grid;
@@ -46,7 +46,34 @@
   #dashboard-controls {
     padding-top: 2rem;
 
-    h3 {
+    .dashboard-icons {
+      padding: 0.5rem;
+    }
+
+    span {
+      padding-right: 0.5rem;
+    }
+
+    hr {
+      border: 1px solid $background-terciary;
+    }
+
+    .dashboard-link {
+      font-size: 1.25rem;
+      padding: 0.5rem;
+      transition: $main-transition;
+      border-radius: 0.25rem;
+      display: flex;
+      align-items: center;
+      // padding: 1rem;
+
+      &:hover {
+        background-color: $background-terciary;
+        cursor: pointer;
+      }
+    }
+
+    h4 {
       padding: 1rem;
     }
   }
