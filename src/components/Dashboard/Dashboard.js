@@ -11,6 +11,7 @@ import SearchBar from '../SearchBar/SearchBar.js';
 import SearchResults from '../SearchResults/SearchResults.js';
 
 import getSearchResults from '../../actions/getSearchResults.js';
+// import getUserData from '../../actions/getUserData.js';
 
 import './Dashboard.scss';
 
@@ -18,26 +19,9 @@ const Dashboard = ({ getSearchResults, stateSearchResults }) => {
   const [ displayName, setDisplayName ] = useState('');
   const [ avatar, setAvatar ] = useState();
   const [ query, setQuery ] = useState('');
-  // const [ searchResults, setSearchResults ] = useState();
+  const [ userData, setUserData ] = useState({});
   const loginCode = useSelector( state => state.getLoginCode );
   const accessToken = useAuth( loginCode );
-
-  // useEffect(() => {
-  //   if (!accessToken) return;
-  //   axios('https://api.spotify.com/v1/me/top/tracks', {
-  //     headers: {
-  //       'Authorization': `Bearer ${accessToken}`,
-  //       'Accept': 'application/json',
-  //       'Content-Type': 'application/json',
-  //     }
-  //   })
-  //   .then((res) => {
-  //     console.log(res);
-  //   })
-  //   .catch((err) => {
-  //     console.log(err);
-  //   })
-  // }, [accessToken])
 
   // let params = useParams();
   // useEffect(() => {
@@ -47,9 +31,19 @@ const Dashboard = ({ getSearchResults, stateSearchResults }) => {
   //   // console.log(params);
   // }, [params])
 
+  // useEffect(() => {
+  //   if (accessToken) {
+  //     fetchUserData();
+  //   }
+  // }, [])
+
   useEffect(() => {
     if (!accessToken) return;
-    axios('https://api.spotify.com/v1/me/top/tracks', {
+    fetchUserData();
+  }, [ accessToken ]);
+
+  const fetchUserData = async () => {
+    await axios('https://api.spotify.com/v1/me', {
       headers: {
         'Authorization': `Bearer ${accessToken}`,
         'Accept': 'application/json',
@@ -58,32 +52,14 @@ const Dashboard = ({ getSearchResults, stateSearchResults }) => {
     })
     .then((res) => {
       console.log(res);
-    })
-    .catch((err) => {
-      console.log(err);
-    })
-  }, [accessToken])
-
-  useEffect(() => {
-    if (!accessToken) return;
-
-    axios('https://api.spotify.com/v1/me', {
-      // method: 'GET',
-      headers: {
-        'Authorization': `Bearer ${accessToken}`,
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      }
-    })
-    .then((res) => {
-      // console.log(res);
-      setDisplayName(res.data.display_name);
+      setUserData(res.data);
       setAvatar(res.data.images[0].url);
+      console.log(userData);
     })
     .catch((err) => {
       console.log(err);
     })
-  }, [ accessToken ]);
+  }
 
   const fetchSearchResults = (query) => {
     setQuery(query);
@@ -97,18 +73,18 @@ const Dashboard = ({ getSearchResults, stateSearchResults }) => {
       <div id='dashboard-sidebar' className='dashboard-card'>
         <div id='dashboard-profile'>
           <img src={avatar} alt='avatar'></img>
-          <h1>{displayName}</h1>
+          <h1>{userData.display_name}</h1>
         </div>
         <SearchBar onSubmit={fetchSearchResults}/>
         <div id='dashboard-controls'>
           <div className='dashboard-link'>
-            <span class="material-icons">
+            <span className="material-icons">
               person
             </span>
             My Profile
           </div>
           <div className='dashboard-link'>
-            <span class="material-icons">
+            <span className="material-icons">
               library_music
             </span>
             Playlists
@@ -128,12 +104,14 @@ const Dashboard = ({ getSearchResults, stateSearchResults }) => {
 
 const mapStateToProps = (state) => ({
   stateSearchResults: state.getSearchResults,
-  stateAccessToken: state.getAccessToken
+  stateAccessToken: state.getAccessToken,
+  // userData: state.getUserData
 });
 
 const mapDispatchToProps = (dispatch) => ({
   getSearchResults: (query, token) => dispatch(getSearchResults(query, token)),
-  getAccessToken: () => dispatch({ type: 'GET_ACCESS_TOKEN' })
+  getAccessToken: () => dispatch({ type: 'GET_ACCESS_TOKEN' }),
+  // getUserData: (token) => dispatch(getUserData(token))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

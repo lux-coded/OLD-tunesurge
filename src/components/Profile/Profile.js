@@ -4,7 +4,11 @@ import './Profile.scss';
 class Profile extends React.Component {
 
   render() {
-    return <div>Profile</div>;
+    return (
+      <div>
+        <h1>Username</h1>
+      </div>
+    );
   }
 }
 
