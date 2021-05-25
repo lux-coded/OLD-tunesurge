@@ -8,7 +8,7 @@ class ResultCard extends React.Component {
   }
   render() {
     const artists = this.props.result.artists.map((artist) => {
-        return <Link to='/artists/:name' value={artist.name} className='artist-title'>{artist.name}</Link>
+        return <Link to={`/artists/${artist.name}`} value={artist.name} className='artist-title'>{artist.name}</Link>
     });
 
     const { id, name, uri, href } = this.props.result;
