@@ -9,6 +9,7 @@ import useAuth from '../useAuth.js';
 import Profile from '../Profile/Profile.js';
 import SearchBar from '../SearchBar/SearchBar.js';
 import SearchResults from '../SearchResults/SearchResults.js';
+import ArtistPage from '../ArtistPage/ArtistPage.js';
 
 import getSearchResults from '../../actions/getSearchResults.js';
 // import getUserData from '../../actions/getUserData.js';
@@ -38,8 +39,13 @@ const Dashboard = ({ getSearchResults, stateSearchResults }) => {
   // }, [])
 
   useEffect(() => {
+
     if (!accessToken) return;
-    fetchUserData();
+    // fetchUserData();
+    console.log(fetchUserData());
+
+    const currentUser = sessionStorage.getItem('currentUser');
+    console.log(currentUser);
   }, [ accessToken ]);
 
   const fetchUserData = async () => {
@@ -54,7 +60,7 @@ const Dashboard = ({ getSearchResults, stateSearchResults }) => {
       console.log(res);
       setUserData(res.data);
       setAvatar(res.data.images[0].url);
-      console.log(userData);
+      sessionStorage.setItem('currentUser', res.data);
     })
     .catch((err) => {
       console.log(err);
@@ -97,6 +103,7 @@ const Dashboard = ({ getSearchResults, stateSearchResults }) => {
       <div id='dashboard-panel' className='dashboard-card'>
         <Route path='/' exact component={Profile} />
         <Route path='/search/:query' exact component={SearchResults} />
+        <Route path='/artists/:id' exact component={ArtistPage} />
       </div>
     </section>
   );

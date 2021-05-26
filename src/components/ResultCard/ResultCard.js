@@ -8,8 +8,8 @@ class ResultCard extends React.Component {
   }
   render() {
     const artists = this.props.result.artists.map((artist) => {
-        return <Link to={`/artists/${artist.name}`} value={artist.name} className='artist-title'>{artist.name}</Link>
-    });
+        return <p key={artist.id} className='artist-title-container'><Link to={`/artists/${artist.id}`} value={artist.name} className='artist-title'>{artist.name}</Link></p>
+          });
 
     const { id, name, uri, href } = this.props.result;
     const albumArt = this.props.result.album.images[2].url;
@@ -18,7 +18,7 @@ class ResultCard extends React.Component {
         <img src={albumArt} className='result-image' alt='result'></img>
         <div>
           <p className='song-title'>{name}</p>
-          <p>{artists}</p>
+          <span>{artists}</span>
         </div>
       </div>
     );

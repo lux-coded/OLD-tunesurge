@@ -17,18 +17,24 @@
     font-weight: 600;
   }
 
-  .artist-title {
+  .artist-title-container {
     color: rgb(125, 125, 125);
-    text-decoration: none;
     display: inline-block;
 
-    &:active {
-      color: $main-text-color;
-    }
     &:first-of-type:before { content: '' }
     &:before { content: '\00a0' }
     &:after { content: ',' }
     &:last-of-type:after { content: '\00a0' }
+
+    .artist-title {
+      color: rgb(125, 125, 125);
+      text-decoration: none;
+      display: inline-block;
+
+      &:active {
+        color: $main-text-color;
+      }
+    }
   }
 
   .result-image {

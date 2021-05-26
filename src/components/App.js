@@ -34,6 +34,7 @@ class App extends React.Component {
         <Switch>
           <Route path='/' exact component={code ? Dashboard : Login} />
           <Route path='/search/:query' exact component={Dashboard} />
+          <Route path='/artists/:id' exact component={Dashboard} />
         </Switch>
       </Router>
     );
