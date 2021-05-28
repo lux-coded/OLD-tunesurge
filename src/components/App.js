@@ -19,8 +19,6 @@ class App extends React.Component {
     const savedAccessToken = localStorage.getItem('accessToken');
     this.props.getLoginCode(code);
     this.props.getAccessToken(savedAccessToken);
-    // this.setState({ savedAccessToken: savedAccessToken });
-    // this.setState({ currentAccessToken: getAccessToken });
   }
 
   checkSession = () => {
@@ -35,6 +33,7 @@ class App extends React.Component {
           <Route path='/' exact component={code ? Dashboard : Login} />
           <Route path='/search/:query' exact component={Dashboard} />
           <Route path='/artists/:id' exact component={Dashboard} />
+          <Route path='/album/:id' exact component={Dashboard} />
         </Switch>
       </Router>
     );

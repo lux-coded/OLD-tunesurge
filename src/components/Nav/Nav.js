@@ -9,7 +9,9 @@ class Nav extends React.Component {
         <a href='/'>
           <h1 id='nav-logo'>TuneSurge</h1>
         </a>
-        <h1>Links</h1>
+        <span className="material-icons nav-menu-icon">
+          menu
+        </span>
       </nav>
     );
   }

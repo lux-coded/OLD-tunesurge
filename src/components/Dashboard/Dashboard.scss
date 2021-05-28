@@ -92,11 +92,15 @@
   #dashboard-profile {
     display: flex;
     align-items: center;
-    padding: 0.5rem 2rem;
+    padding: 0.5rem 3rem;
     border-radius: 0.5rem;
     background: $background-main;
     h1 {
       padding: 0 1rem;
+      color: $main-color;
+      background: $main-gradient;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
     img {
@@ -114,6 +118,14 @@
     border-radius: 0.5rem;
     display: grid;
     grid-template-columns: 1fr;
+
+    #dashboard-panel {
+      padding: 0.5rem;
+    }
+
+    #dashboard-sidebar {
+      display: none;
+    }
 
   }
 }

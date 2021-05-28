@@ -7,14 +7,37 @@
   border-radius: 0.25rem;
   height: 4rem;
   transition: $main-transition;
+  position: relative;
+
+  .song-runtime {
+    position: absolute;
+    right: 1rem;
+    bottom: 35%;
+  }
 
   &:hover {
     cursor: pointer;
     background-color: $background-terciary;
   }
 
+  .song-info {
+  }
+
+  .album-song-info {
+    padding-left: 1rem;
+    display: flex;
+  }
+
   .song-title {
     font-weight: 600;
+  }
+
+  .album-title {
+    color: rgb(125, 125, 125);
+    text-decoration: none;
+    &:active {
+      color: $main-text-color;
+    }
   }
 
   .artist-title-container {

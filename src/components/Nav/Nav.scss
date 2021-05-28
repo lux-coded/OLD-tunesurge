@@ -8,9 +8,28 @@ nav {
   display: flex;
   justify-content: space-between;
   padding: 1rem 20%;
+
+  .nav-menu-icon {
+    display: none;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
   #nav-logo {
     background: $main-gradient;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  nav {
+    padding: 1rem 10%;
+
+    .nav-menu-icon {
+      display: inline;
+    }
   }
 }

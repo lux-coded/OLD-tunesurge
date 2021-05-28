@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect, useSelector } from 'react-redux';
-import { useParams, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import axios from 'axios';
 import history from '../../history.js';
 
@@ -10,42 +10,28 @@ import Profile from '../Profile/Profile.js';
 import SearchBar from '../SearchBar/SearchBar.js';
 import SearchResults from '../SearchResults/SearchResults.js';
 import ArtistPage from '../ArtistPage/ArtistPage.js';
+import AlbumPage from '../AlbumPage/AlbumPage.js';
 
 import getSearchResults from '../../actions/getSearchResults.js';
-// import getUserData from '../../actions/getUserData.js';
+import getUserData from '../../actions/getUserData.js';
 
 import './Dashboard.scss';
 
-const Dashboard = ({ getSearchResults, stateSearchResults }) => {
-  const [ displayName, setDisplayName ] = useState('');
+const Dashboard = ({ getSearchResults, searchResults, getUserData }) => {
   const [ avatar, setAvatar ] = useState();
-  const [ query, setQuery ] = useState('');
   const [ userData, setUserData ] = useState({});
   const loginCode = useSelector( state => state.getLoginCode );
   const accessToken = useAuth( loginCode );
-
-  // let params = useParams();
-  // useEffect(() => {
-  //   // if (match.params.query) {
-  //   //   fetchSearchResults();
-  //   // }
-  //   // console.log(params);
-  // }, [params])
-
-  // useEffect(() => {
-  //   if (accessToken) {
-  //     fetchUserData();
-  //   }
-  // }, [])
 
   useEffect(() => {
 
     if (!accessToken) return;
     // fetchUserData();
-    console.log(fetchUserData());
+    getUserData(accessToken);
+    fetchUserData();
 
     const currentUser = sessionStorage.getItem('currentUser');
-    console.log(currentUser);
+    // console.log(currentUser);
   }, [ accessToken ]);
 
   const fetchUserData = async () => {
@@ -57,7 +43,7 @@ const Dashboard = ({ getSearchResults, stateSearchResults }) => {
       }
     })
     .then((res) => {
-      console.log(res);
+      // console.log(res);
       setUserData(res.data);
       setAvatar(res.data.images[0].url);
       sessionStorage.setItem('currentUser', res.data);
@@ -68,9 +54,7 @@ const Dashboard = ({ getSearchResults, stateSearchResults }) => {
   }
 
   const fetchSearchResults = (query) => {
-    setQuery(query);
     getSearchResults(query, accessToken);
-    // setSearchResults(stateSearchResults.data);
     history.push(`/search/${query}`);
   }
 
@@ -102,7 +86,10 @@ const Dashboard = ({ getSearchResults, stateSearchResults }) => {
       </div>
       <div id='dashboard-panel' className='dashboard-card'>
         <Route path='/' exact component={Profile} />
-        <Route path='/search/:query' exact component={SearchResults} />
+        <Route path='/search/:query' exact>
+          <SearchResults results={searchResults} />
+        </Route>
+        <Route path='/album/:id' exact component={AlbumPage} />
         <Route path='/artists/:id' exact component={ArtistPage} />
       </div>
     </section>
@@ -110,15 +97,15 @@ const Dashboard = ({ getSearchResults, stateSearchResults }) => {
 }
 
 const mapStateToProps = (state) => ({
-  stateSearchResults: state.getSearchResults,
-  stateAccessToken: state.getAccessToken,
+  searchResults: state.getSearchResults,
+  sccessToken: state.getAccessToken,
   // userData: state.getUserData
 });
 
 const mapDispatchToProps = (dispatch) => ({
   getSearchResults: (query, token) => dispatch(getSearchResults(query, token)),
   getAccessToken: () => dispatch({ type: 'GET_ACCESS_TOKEN' }),
-  // getUserData: (token) => dispatch(getUserData(token))
+  getUserData: (token) => dispatch(getUserData(token))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

@@ -1,0 +1,22 @@
+#album-page {
+  padding: 2rem;
+  text-align: center;
+
+  .album-info {
+    padding: 2rem 0;
+
+    h1 {
+      font-size: 2rem;
+    }
+  }
+
+  .album-art {
+    width: 300px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  #album-page {
+    padding: 2rem 0.5rem;
+  }
+}

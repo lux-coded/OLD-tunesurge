@@ -1,0 +1,22 @@
+.artist-page {
+  .artist-banner {
+    position: relative;
+    border-radius: 0.5rem;
+    height: 500px;
+
+    .artist-name {
+      position: absolute;
+      font-size: 4rem;
+      left: 5%;
+      bottom: 10%;
+    }
+  }
+
+  .artist-top-tracks {
+    padding: 2rem 0;
+  }
+
+  .artist-discography {
+    padding: 2rem 0;
+  }
+}

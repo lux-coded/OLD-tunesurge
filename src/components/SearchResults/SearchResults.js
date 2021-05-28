@@ -6,30 +6,42 @@ import { connect } from 'react-redux';
 
 import ResultCard from '../ResultCard/ResultCard.js';
 
-const SearchResults = ({ searchResults }) => {
-  const propsResults = searchResults
-  const [ results, setResults ] = useState([]);
+const SearchResults = ({ results }) => {
+  const [ resultPayload, setResultPayload ] = useState([]);
 
   useEffect(() => {
-    if (Object.keys(searchResults).length === 0) return;
+    if (Object.keys(results).length === 0) return;
 
     try {
-      const results = searchResults.data.tracks.items.map((result) => {
-        return <ResultCard result={result} key={result.id}/>;
-      });
+      if ('items' in results.data.tracks) {
 
-      setResults(results);
-      console.log(searchResults.data.tracks.items);
-
+        const resultMap = results.data.tracks.items.map((result) => {
+          return <ResultCard result={result} key={result.id}/>;
+        });
+        setResultPayload(resultMap);
+      }
     } catch (err) {
       console.log(err);
     }
 
-  }, [ searchResults ])
+    try {
+      if (!('items' in results.data.tracks)) {
+
+        const resultMap = results.data.tracks.map((result) => {
+          return <ResultCard result={result} key={result.id}/>;
+        });
+        setResultPayload(resultMap);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+
+
+  }, [ results ])
 
   return (
     <div className='search-results'>
-      {results}
+      { resultPayload }
     </div>
   );
 }
