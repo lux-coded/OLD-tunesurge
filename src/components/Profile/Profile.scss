@@ -1,0 +1,23 @@
+#profile-page {
+  padding: 6rem;
+  text-align: center;
+
+  .profile-section {
+    padding: 2rem;
+  }
+
+  .profile-results {
+    padding: 2rem 0;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 1rem;
+  }
+
+  #profile-page-avatar {
+    border-radius: 50%;
+  }
+  h1 {
+    padding: 2rem 0;
+    font-size: 4rem;
+  }
+}

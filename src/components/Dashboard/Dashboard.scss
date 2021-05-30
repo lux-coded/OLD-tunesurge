@@ -72,6 +72,8 @@
     .dashboard-link {
       font-size: 1.25rem;
       padding: 0.5rem;
+      color: $main-text-color;
+      text-decoration: none;
       transition: $main-transition;
       border-radius: 0.25rem;
       display: flex;

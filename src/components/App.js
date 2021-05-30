@@ -7,13 +7,9 @@ import Dashboard from './Dashboard/Dashboard.js';
 import Nav from './Nav/Nav.js';
 import { getLoginCode, getAccessToken } from '../actions/authActions.js';
 
-// console.log(code);
-
-// const isLoggedIn = code ? <Login /> : <Dashboard />;
 const code = new URLSearchParams(window.location.search).get('code');
 
 class App extends React.Component {
-  // state: { savedAccessToken: '' }
 
   componentDidMount() {
     const savedAccessToken = localStorage.getItem('accessToken');
@@ -31,6 +27,7 @@ class App extends React.Component {
         <Nav />
         <Switch>
           <Route path='/' exact component={code ? Dashboard : Login} />
+          <Route path='/profile' exact component={Dashboard} />
           <Route path='/search/:query' exact component={Dashboard} />
           <Route path='/artists/:id' exact component={Dashboard} />
           <Route path='/album/:id' exact component={Dashboard} />
@@ -39,19 +36,6 @@ class App extends React.Component {
     );
   }
 };
-
-// const mapStateToProps = (state) => ({
-//   getLoginCode: state.getLoginCode
-// })
-//
-// const mapDispatchToProps = (dispatch) => ({
-//   getLoginCode: getLoginCode
-// });
-
-// const mapDispatchToProps = (dispatch) => ({
-//   getLoginCode,
-//   getAccessToken
-// })
 
 export default connect(
   null,

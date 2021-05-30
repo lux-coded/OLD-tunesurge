@@ -1,14 +1,14 @@
-import { GET_USER_DATA } from './types.js';
+import { GET_NEW_RELEASES } from './types.js';
 import axios from 'axios';
 
-const saveUserData = payload => ({
-  type: GET_USER_DATA,
+const saveNewReleases = payload => ({
+  type: GET_NEW_RELEASES,
   payload
 });
 
-const getUserData = (token) => {
+const getNewReleases = (token) => {
   return async (dispatch) => {
-    await axios('https://api.spotify.com/v1/me', {
+     await axios(`https://api.spotify.com/v1/browse/new-releases`, {
       headers: {
         'Authorization': `Bearer ${token}`,
         'Accept': 'application/json',
@@ -16,8 +16,8 @@ const getUserData = (token) => {
       }
     })
     .then((res) => {
-      console.log(res);
-      dispatch(saveUserData(res))
+      console.log(res.data);
+      dispatch(saveNewReleases(res))
     })
     .catch((err) => {
       console.log(err);
@@ -25,4 +25,4 @@ const getUserData = (token) => {
   };
 };
 
-export default getUserData;
+export default getNewReleases;

@@ -1,0 +1,20 @@
+@import '../../styles/variables.scss';
+
+.result-tile {
+  background-color: $background-terciary;
+  height: 250px;
+  padding: 2rem 0rem;
+  transition: $main-transition;
+  border-radius: 0.5rem;
+
+  img {
+    width: 100px;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  &:hover {
+    background-color: $background-hover;
+    cursor: pointer;
+  }
+}

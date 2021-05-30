@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect, useSelector } from 'react-redux';
-import { Route } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
 import axios from 'axios';
 import history from '../../history.js';
 
@@ -11,6 +11,7 @@ import SearchBar from '../SearchBar/SearchBar.js';
 import SearchResults from '../SearchResults/SearchResults.js';
 import ArtistPage from '../ArtistPage/ArtistPage.js';
 import AlbumPage from '../AlbumPage/AlbumPage.js';
+import Home from '../Home/Home.js';
 
 import getSearchResults from '../../actions/getSearchResults.js';
 import getUserData from '../../actions/getUserData.js';
@@ -67,12 +68,18 @@ const Dashboard = ({ getSearchResults, searchResults, getUserData }) => {
         </div>
         <SearchBar onSubmit={fetchSearchResults}/>
         <div id='dashboard-controls'>
-          <div className='dashboard-link'>
+          <Link to='/' className='dashboard-link'>
+            <span className="material-icons">
+              home
+            </span>
+            Home
+          </Link>
+          <Link to='/profile' className='dashboard-link'>
             <span className="material-icons">
               person
             </span>
             My Profile
-          </div>
+          </Link>
           <div className='dashboard-link'>
             <span className="material-icons">
               library_music
@@ -85,7 +92,10 @@ const Dashboard = ({ getSearchResults, searchResults, getUserData }) => {
         </div>
       </div>
       <div id='dashboard-panel' className='dashboard-card'>
-        <Route path='/' exact component={Profile} />
+        <Route path='/' exact>
+          <Home userData={userData}/>
+        </Route>
+        <Route path='/profile' exact component={Profile} />
         <Route path='/search/:query' exact>
           <SearchResults results={searchResults} />
         </Route>
@@ -98,8 +108,6 @@ const Dashboard = ({ getSearchResults, searchResults, getUserData }) => {
 
 const mapStateToProps = (state) => ({
   searchResults: state.getSearchResults,
-  sccessToken: state.getAccessToken,
-  // userData: state.getUserData
 });
 
 const mapDispatchToProps = (dispatch) => ({
