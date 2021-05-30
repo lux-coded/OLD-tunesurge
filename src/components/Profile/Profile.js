@@ -10,7 +10,7 @@ class Profile extends React.Component {
   state = { userTopTracks: [], userTopArtists: [] }
 
   componentDidMount() {
-    console.log(this.props.userData.data);
+    // console.log(this.props.userData.data);
     this.fetchUserTopTracks();
     this.fetchUserTopArtists();
   }
@@ -24,7 +24,7 @@ class Profile extends React.Component {
       },
     })
     .then((res) => {
-      console.log(res);
+      // console.log(res);
       this.setState({ userTopTracks: res.data.items })
     })
     .catch((err) => {
@@ -41,7 +41,6 @@ class Profile extends React.Component {
       },
     })
     .then((res) => {
-      console.log(res);
       this.setState({ userTopArtists: res.data.items })
     })
     .catch((err) => {
@@ -52,6 +51,7 @@ class Profile extends React.Component {
   render() {
     const { display_name } = this.props.userData.data;
     const avatar = this.props.userData.data.images[0].url;
+
     const topTracks = this.state.userTopTracks.map((track) => {
       return <ResultTile key={track.id} result={track} />
     })
@@ -59,6 +59,7 @@ class Profile extends React.Component {
     const topArtists = this.state.userTopArtists.map((artist) => {
       return <ResultTile key={artist.id} result={artist} />
     })
+
     return (
       <div id='profile-page'>
         <img id='profile-page-avatar' src={avatar} alt='avatar'></img>

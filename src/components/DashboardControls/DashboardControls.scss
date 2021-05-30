@@ -1,0 +1,53 @@
+@import '../../styles/variables.scss';
+
+.hidden {
+  display: none;
+}
+
+#mobile-dashboard-sidebar {
+  position: absolute;
+  right: 0;
+  top: 4rem;
+  width: 100%;
+  z-index: 999;
+  background-color: $background-terciary;
+  border-radius: 0.5rem;
+  padding: 1rem;
+
+  #mobile-dashboard-controls {
+    padding-top: 2rem;
+
+    .mobile-dashboard-icons {
+      padding: 0.5rem;
+    }
+
+    span {
+      padding-right: 0.5rem;
+    }
+
+    hr {
+      border: 1px solid $background-terciary;
+    }
+
+    .mobile-dashboard-link {
+      font-size: 1.25rem;
+      padding: 0.5rem;
+      color: $main-text-color;
+      text-decoration: none;
+      transition: $main-transition;
+      border-radius: 0.25rem;
+      display: flex;
+      align-items: center;
+      // padding: 1rem;
+
+      &:hover {
+        background-color: $background-hover;
+        cursor: pointer;
+      }
+    }
+
+    h4 {
+      padding: 1rem;
+    }
+  }
+}

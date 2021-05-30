@@ -10,7 +10,6 @@ class Home extends React.Component {
   state = { newReleases: [] }
 
   componentDidMount() {
-    // this.props.getNewReleases(this.props.accessToken);
     this.fetchNewResults();
   }
 
@@ -31,9 +30,6 @@ class Home extends React.Component {
   }
 
   render() {
-    // const newReleasesResults = this.props.newReleases.data.albums.items.map((result) => {
-    //   return <ResultTile result={result} />
-    // });
 
     return (
       <section id='home'>

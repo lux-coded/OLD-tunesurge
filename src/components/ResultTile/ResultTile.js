@@ -1,7 +1,19 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 import './ResultTile.scss';
 
 class ResultTile extends React.Component {
+
+  renderArtists(artists) {
+    const tileArtists = artists.map((artist) => {
+      return <p key={artist.id} className='artist-title'>{artist.name}</p>
+    });
+
+    const truncatedArtists = tileArtists.slice(0,2);
+
+    return truncatedArtists;
+  }
 
   render() {
     const resultData = this.props.result;
@@ -9,10 +21,24 @@ class ResultTile extends React.Component {
     const image = resultData.album ? resultData.album.images[1].url : resultData.images[1].url;
 
     return (
-      <article className='result-tile'>
+      <Link to={resultData.type === 'album' ? `/album/${resultData.album.id}` : `/artists/${id}`} className='result-tile'>
         <img src={image}></img>
-        <h3>{name}</h3>
-      </article>
+        {
+
+          resultData.artists ?  // Checks if current data loop contains 'artists' property.
+
+            // If yes, render artists.
+              <div>
+                <h4>{name}</h4>
+                {this.renderArtists(resultData.artists)}
+              </div>
+
+          :
+
+          <h3>{name}</h3> // Else, render the name property in 'root' of object.
+
+        }
+      </Link>
     );
   }
 }

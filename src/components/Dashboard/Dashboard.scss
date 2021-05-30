@@ -112,17 +112,22 @@
   }
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 1000px) {
   #dashboard-container {
-    padding: 1rem;
+    padding: 0rem;
     margin: 1rem 0;
     color: $main-text-color;
     border-radius: 0.5rem;
     display: grid;
     grid-template-columns: 1fr;
 
+    .dashboard-card {
+      height: auto;
+    }
+
     #dashboard-panel {
       padding: 0.5rem;
+      overflow-y: auto;
     }
 
     #dashboard-sidebar {

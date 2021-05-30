@@ -65,3 +65,17 @@
     height: 50px;
   }
 }
+
+@media screen and (max-width: 1000px) {
+  .result-card {
+    padding: 0;
+
+    .result-image {
+      padding: 0.25rem 0.5rem;
+    }
+
+    .song-title, .song-runtime, .album-title, p {
+      font-size: 0.9rem;
+    }
+  }
+}

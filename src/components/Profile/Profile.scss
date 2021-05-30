@@ -1,5 +1,5 @@
 #profile-page {
-  padding: 6rem;
+  padding: 6rem 2rem;
   text-align: center;
 
   .profile-section {
@@ -16,8 +16,46 @@
   #profile-page-avatar {
     border-radius: 50%;
   }
+
   h1 {
     padding: 2rem 0;
     font-size: 4rem;
+  }
+}
+
+@media screen and (max-width: 1600px) {
+  #profile-page {
+    padding: 6rem 1rem;
+
+    .profile-results {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+}
+
+@media screen and (max-width: 1300px) {
+  #profile-page {
+    padding: 4rem 1rem;
+
+    #profile-page-avatar {
+      width: 200px;
+    }
+
+    h1 {
+      font-size: 3rem;
+    }
+
+    .profile-results {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  #profile-page {
+    padding: 2rem 0.5rem;
+    .profile-results {
+      grid-template-columns: 1fr;
+    }
   }
 }

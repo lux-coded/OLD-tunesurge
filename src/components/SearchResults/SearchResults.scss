@@ -4,3 +4,9 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
+
+@media screen and (max-width: 1500px) {
+  .search-results {
+    grid-template-columns: 1fr;
+  }
+}

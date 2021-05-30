@@ -27,12 +27,10 @@ const Dashboard = ({ getSearchResults, searchResults, getUserData }) => {
   useEffect(() => {
 
     if (!accessToken) return;
-    // fetchUserData();
     getUserData(accessToken);
     fetchUserData();
 
     const currentUser = sessionStorage.getItem('currentUser');
-    // console.log(currentUser);
   }, [ accessToken ]);
 
   const fetchUserData = async () => {
@@ -44,7 +42,6 @@ const Dashboard = ({ getSearchResults, searchResults, getUserData }) => {
       }
     })
     .then((res) => {
-      // console.log(res);
       setUserData(res.data);
       setAvatar(res.data.images[0].url);
       sessionStorage.setItem('currentUser', res.data);

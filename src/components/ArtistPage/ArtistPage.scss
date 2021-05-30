@@ -10,6 +10,12 @@
       left: 5%;
       bottom: 10%;
     }
+
+    .artist-followers {
+      position: absolute;
+      right: 5%;
+      bottom: 15%;
+    }
   }
 
   .artist-top-tracks {
@@ -18,5 +24,21 @@
 
   .artist-discography {
     padding: 2rem 0;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .artist-page {
+    .artist-banner {
+      height: 300px;
+      .artist-name {
+        font-size: 2rem;
+        bottom: 20px;
+      }
+
+      .artist-followers {
+        bottom: 25px;
+      }
+    }
   }
 }
