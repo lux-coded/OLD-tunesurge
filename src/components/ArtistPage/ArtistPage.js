@@ -115,7 +115,9 @@ class ArtistPage extends React.Component {
         <section className='artist-discography'>
           <h2>Discography</h2>
           <br></br>
-          {this.renderAlbums()}
+          <div className='artist-albums'>
+            {this.renderAlbums()}
+          </div>
         </section>
       </section>
     );

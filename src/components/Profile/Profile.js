@@ -60,6 +60,8 @@ class Profile extends React.Component {
       return <ResultTile key={artist.id} result={artist} />
     })
 
+    console.log(this.state.userTopTracks);
+
     return (
       <div id='profile-page'>
         <img id='profile-page-avatar' src={avatar} alt='avatar'></img>

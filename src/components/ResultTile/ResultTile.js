@@ -15,13 +15,26 @@ class ResultTile extends React.Component {
     return truncatedArtists;
   }
 
+  resultType = (resultData) => {
+    if (resultData.type === 'album') {
+      return `/album/${resultData.id}`;
+    }
+    if (resultData.type === 'artist') {
+      return `/artists/${resultData.id}`;
+    }
+    if (resultData.type === 'track') {
+      return `/album/${resultData.album.id}`;
+    }
+  }
+
   render() {
+
     const resultData = this.props.result;
-    const { id, name, uri, href } = resultData;
+    const { id, name, uri, href, type } = resultData;
     const image = resultData.album ? resultData.album.images[1].url : resultData.images[1].url;
 
     return (
-      <Link to={resultData.type === 'album' ? `/album/${resultData.album.id}` : `/artists/${id}`} className='result-tile'>
+      <Link to={this.resultType(resultData)} className='result-tile'>
         <img src={image}></img>
         {
 
