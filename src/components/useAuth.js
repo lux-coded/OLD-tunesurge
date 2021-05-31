@@ -18,17 +18,13 @@ const useAuth = function (code) {
         code
       })
       .then((res) => {
-        // console.log(res);
         setAccessToken(res.data.accessToken);
         setRefreshToken(res.data.refreshToken);
         setExpiresIn(res.data.expiresIn);
-        localStorage.setItem('accessToken', res.data.accessToken);
         history.push(`/`);
-        // window.location = '/';
       })
       .catch((err) => {
-        console.error(err);
-        // window.location = '/';
+        window.location = '/';
       })
 
   }, [code]);
@@ -44,13 +40,10 @@ const useAuth = function (code) {
           refreshToken,
         })
         .then((res) => {
-          // console.log(res);
           setAccessToken(res.data.accessToken);
           setExpiresIn(res.data.expiresIn);
-          localStorage.setItem('accessToken', res.data.accessToken);
         })
         .catch((err) => {
-          // console.error(err);
           window.location = '/';
         })
 
