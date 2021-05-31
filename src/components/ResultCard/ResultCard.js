@@ -9,7 +9,7 @@ class ResultCard extends React.Component {
           });
 
     const resultData = this.props.result;
-    const { id, name: trackName, uri, href, duration_ms } = resultData;
+    const { name: trackName, duration_ms } = resultData;
 
     function millisToMinutesAndSeconds(millis) {
       let minutes = Math.floor(millis / 60000);

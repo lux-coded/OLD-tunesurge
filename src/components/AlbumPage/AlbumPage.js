@@ -5,7 +5,6 @@ import './AlbumPage.scss';
 
 import getAlbumData from '../../actions/getAlbumData.js';
 
-import SearchResults from '../SearchResults/SearchResults.js';
 import ResultCard from '../ResultCard/ResultCard.js';
 
 const AlbumPage = ({ accessToken, match }) => {
@@ -16,18 +15,7 @@ const AlbumPage = ({ accessToken, match }) => {
   useEffect(() => {
     const albumId = match.params.id;
     getAlbumData(albumId);
-
   }, [])
-
-  useEffect(() => {
-    // console.log(albumData);
-    // const resultMap = albumTracks.map((result) => {
-    //   return <ResultCard result={result} key={result.id}/>;
-    // });
-    //
-    // setAlbumTracks(resultMap);
-    // displayAlbumTracks();
-  }, [ albumData ])
 
   const getAlbumData = async (id) => {
     axios(`https://api.spotify.com/v1/albums/${id}`, {

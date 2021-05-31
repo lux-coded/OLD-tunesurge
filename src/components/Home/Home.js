@@ -4,7 +4,7 @@ import axios from 'axios';
 
 import getNewReleases from '../../actions/getNewReleases.js';
 
-import ResultTile from '../ResultTile/ResultTile.js';
+// import ResultTile from '../ResultTile/ResultTile.js';
 
 class Home extends React.Component {
   state = { newReleases: [] }

@@ -30,7 +30,7 @@ class ResultTile extends React.Component {
   render() {
 
     const resultData = this.props.result;
-    const { id, name, uri, href, type } = resultData;
+    const { name, type } = resultData;
     const image = resultData.album ? resultData.album.images[1].url : resultData.images[1].url;
 
     return (

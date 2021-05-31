@@ -30,7 +30,6 @@ const Dashboard = ({ getSearchResults, searchResults, getUserData }) => {
     getUserData(accessToken);
     fetchUserData();
 
-    const currentUser = sessionStorage.getItem('currentUser');
   }, [ accessToken ]);
 
   const fetchUserData = async () => {
