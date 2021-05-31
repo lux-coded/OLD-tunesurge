@@ -16,6 +16,15 @@ class ArtistPage extends React.Component {
     this.getArtistAlbums(artistId);
   }
 
+  componentDidUpdate(prevProps) {
+  if (this.props.match.params.id !== prevProps.match.params.id) {
+    const artistId = this.props.match.params.id;
+    this.getArtistData(artistId);
+    this.getArtistTopTracks(artistId);
+    this.getArtistAlbums(artistId);
+  }
+}
+
   getArtistData = (id) => {
     axios(`https://api.spotify.com/v1/artists/${id}`, {
       headers: {
@@ -80,9 +89,15 @@ class ArtistPage extends React.Component {
   renderAlbums = () => {
     if (Object.keys(this.state.albums).length === 0) return;
 
+    // const uniqueAlbums = Array.from(new Set(this.state.albums));
+    let albumSet = new Set(this.state.albums.map(album => album.name));
+
+    console.log(albumSet);
+
     const albums = this.state.albums.map((album) => {
       return <ResultTile key={album.id} result={album} />
     });
+
 
     return albums;
   }
