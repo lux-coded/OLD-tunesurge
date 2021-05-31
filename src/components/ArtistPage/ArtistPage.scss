@@ -2,7 +2,7 @@
   .artist-banner {
     position: relative;
     border-radius: 0.5rem;
-    height: 500px;
+    height: 600px;
 
     .artist-name {
       position: absolute;
@@ -85,7 +85,7 @@
     .artist-discography {
       .artist-albums {
         padding: 1rem;
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
         grid-gap: 1rem;
       }
     }
@@ -106,6 +106,13 @@
         position: absolute;
         left: 5%;
         bottom: 10%;
+      }
+    }
+    .artist-discography {
+      .artist-albums {
+        padding: 1rem;
+        grid-template-columns: 1fr;
+        grid-gap: 1rem;
       }
     }
   }

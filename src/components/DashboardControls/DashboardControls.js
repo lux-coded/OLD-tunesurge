@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import history from '../../history.js';
 import './DashboardControls.scss';
 
+import getSearchResults from '../../actions/getSearchResults.js';
+
 import SearchBar from '../SearchBar/SearchBar.js';
 
 class DashboardControls extends React.Component {
@@ -56,7 +58,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-
+  getSearchResults: (query, token) => dispatch(getSearchResults(query, token)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(DashboardControls);

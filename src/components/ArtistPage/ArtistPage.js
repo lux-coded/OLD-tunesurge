@@ -77,7 +77,6 @@ class ArtistPage extends React.Component {
       }
     })
     .then((res) => {
-      console.log(res);
       this.setState({ albums: res.data.items });
     })
     .catch((err) => {
@@ -91,8 +90,6 @@ class ArtistPage extends React.Component {
 
     // const uniqueAlbums = Array.from(new Set(this.state.albums));
     let albumSet = new Set(this.state.albums.map(album => album.name));
-
-    console.log(albumSet);
 
     const albums = this.state.albums.map((album) => {
       return <ResultTile key={album.id} result={album} />

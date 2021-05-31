@@ -24,7 +24,6 @@ class Profile extends React.Component {
       },
     })
     .then((res) => {
-      // console.log(res);
       this.setState({ userTopTracks: res.data.items })
     })
     .catch((err) => {
@@ -59,8 +58,6 @@ class Profile extends React.Component {
     const topArtists = this.state.userTopArtists.map((artist) => {
       return <ResultTile key={artist.id} result={artist} />
     })
-
-    console.log(this.state.userTopTracks);
 
     return (
       <div id='profile-page'>
