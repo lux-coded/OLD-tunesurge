@@ -10,7 +10,6 @@ class Profile extends React.Component {
   state = { userTopTracks: [], userTopArtists: [] }
 
   componentDidMount() {
-    // console.log(this.props.userData.data);
     this.fetchUserTopTracks();
     this.fetchUserTopArtists();
   }

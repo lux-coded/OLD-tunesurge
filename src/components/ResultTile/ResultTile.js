@@ -40,7 +40,6 @@ class ResultTile extends React.Component {
 
           resultData.artists ?  // Checks if current data loop contains 'artists' property.
 
-            // If yes, render artists.
               <div>
                 <h4>{name}</h4>
                 {this.renderArtists(resultData.artists)}

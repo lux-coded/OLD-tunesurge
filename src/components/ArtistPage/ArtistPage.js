@@ -81,14 +81,12 @@ class ArtistPage extends React.Component {
     })
     .catch((err) => {
       console.log(err);
-      // window.location = '/';
     })
   }
 
   renderAlbums = () => {
     if (Object.keys(this.state.albums).length === 0) return;
 
-    // const uniqueAlbums = Array.from(new Set(this.state.albums));
     let albumSet = new Set(this.state.albums.map(album => album.name));
 
     const albums = this.state.albums.map((album) => {
