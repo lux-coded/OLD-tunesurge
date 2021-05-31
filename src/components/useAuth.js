@@ -7,12 +7,14 @@ const useAuth = function (code) {
   const [ refreshToken, setRefreshToken ] = useState();
   const [ expiresIn, setExpiresIn ] = useState();
 
+  const requestURL = process.env.REACT_APP_SERVER_URL;
+
   useEffect(() => {
 
     if (!code) return;
 
     axios
-      .post('http://localhost:5000/login', {
+      .post(`${requestURL}/login`, {
         code
       })
       .then((res) => {
@@ -26,7 +28,7 @@ const useAuth = function (code) {
       })
       .catch((err) => {
         console.error(err);
-        window.location = '/';
+        // window.location = '/';
       })
 
   }, [code]);
@@ -38,7 +40,7 @@ const useAuth = function (code) {
     const timeout = setTimeout(function () {
 
       axios
-        .post('http://localhost:5000/refresh', {
+        .post(`${requestURL}/refresh`, {
           refreshToken,
         })
         .then((res) => {
