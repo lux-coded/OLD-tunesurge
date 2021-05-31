@@ -21,7 +21,7 @@ class ResultCard extends React.Component {
     // const albumArt = this.props.result.album.images[2].url;
 
     return (
-      <div className='result-card'>
+      <div className={image ? 'result-card top-tracks' : 'result-card album-tracks'}>
 
         {
           image ?
@@ -31,17 +31,21 @@ class ResultCard extends React.Component {
 
         <div className={ image ? 'song-info' : 'album-song-info'}>
           <p className='song-title'>{ trackName }</p>
-          <p className='song-runtime'>{millisToMinutesAndSeconds(duration_ms)}</p>
 
           {
             this.props.result.album ?
-              <span>{ artists } on <Link to={`/album/${resultData.album.id}`} className='album-title'>{ resultData.album.name }</Link></span>
+            <div>
+              <span className='artist-title'>{ artists }</span>
+              <br></br>
+              <span><Link to={`/album/${resultData.album.id}`} className='album-title'>{ resultData.album.name }</Link></span>
+            </div>
             :
             ''
           }
 
 
         </div>
+        <p className='song-runtime'>{millisToMinutesAndSeconds(duration_ms)}</p>
       </div>
     );
   }

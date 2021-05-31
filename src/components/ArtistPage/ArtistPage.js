@@ -102,6 +102,13 @@ class ArtistPage extends React.Component {
     return albums;
   }
 
+  renderFollowers = () => {
+    if (isNaN(this.state.artistFollowers)) return;
+    const followerNumber = this.state.artistFollowers;
+    const formattedFollowerNumber = followerNumber.toLocaleString();
+    return formattedFollowerNumber;
+  }
+
 
   render() {
     const { name } = this.state.artistData;
@@ -120,7 +127,7 @@ class ArtistPage extends React.Component {
       <section className='artist-page'>
         <section className='artist-banner' style={divStyle}>
           <h1 className='artist-name'>{ name }</h1>
-          <p className='artist-followers'>Followers: {this.state.artistFollowers}</p>
+          <p className='artist-followers'>Followers: {this.renderFollowers()}</p>
         </section>
         <section className='artist-top-tracks'>
           <h2>Top Tracks</h2>

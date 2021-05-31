@@ -1,31 +1,30 @@
 @import '../../styles/variables.scss';
 
+.top-tracks {
+  grid-template-columns: 1fr 6fr 1fr;
+}
+
+.album-tracks {
+  grid-template-columns: 8fr 1fr;
+  text-align: left;
+}
+
 .result-card {
-  display: flex;
+  display: grid;
   align-items: center;
   padding: 0.5rem 0;
   border-radius: 0.25rem;
-  height: 4rem;
+  height: 5rem;
   transition: $main-transition;
   position: relative;
-
-  .song-runtime {
-    position: absolute;
-    right: 1rem;
-    bottom: 35%;
-  }
 
   &:hover {
     cursor: pointer;
     background-color: $background-terciary;
   }
 
-  .song-info {
-  }
-
   .album-song-info {
     padding-left: 1rem;
-    display: flex;
   }
 
   .song-title {
@@ -62,7 +61,7 @@
 
   .result-image {
     padding: 0 1rem;
-    height: 50px;
+    height: 4rem;
   }
 }
 
@@ -74,8 +73,28 @@
       padding: 0.25rem 0.5rem;
     }
 
-    .song-title, .song-runtime, .album-title, p {
+    .song-title, .song-runtime, .album-title, p, span {
       font-size: 0.9rem;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .result-card {
+    padding: 0;
+    height: 5rem;
+
+    .result-image {
+      padding: 0 0.5rem;
+      height: 50px;
+    }
+
+    .album-title {
+      display: none;
+    }
+
+    .song-title, .song-runtime, p, span {
+      font-size: 0.8rem;
     }
   }
 }
