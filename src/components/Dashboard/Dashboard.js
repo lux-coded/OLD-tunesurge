@@ -15,10 +15,11 @@ import Home from '../Home/Home.js';
 
 import getSearchResults from '../../actions/getSearchResults.js';
 import getUserData from '../../actions/getUserData.js';
+import { getAccessToken } from '../../actions/authActions.js';
 
 import './Dashboard.scss';
 
-const Dashboard = ({ getSearchResults, searchResults, getUserData }) => {
+const Dashboard = ({ getSearchResults, searchResults, getUserData, getAccessToken }) => {
   const [ avatar, setAvatar ] = useState();
   const [ userData, setUserData ] = useState({});
   const loginCode = useSelector( state => state.getLoginCode );
@@ -28,6 +29,7 @@ const Dashboard = ({ getSearchResults, searchResults, getUserData }) => {
 
     if (!accessToken) return;
     getUserData(accessToken);
+    getAccessToken(accessToken);
     fetchUserData();
 
   }, [ accessToken ]);
@@ -91,7 +93,10 @@ const Dashboard = ({ getSearchResults, searchResults, getUserData }) => {
         <Route path='/' exact>
           <Home userData={userData}/>
         </Route>
-        <Route path='/profile' exact component={Profile} />
+        <Route path='/profile' exact>
+          <Profile token={accessToken}/>
+        </Route>
+        {/* <Route path='/profile' exact component={Profile} /> */}
         <Route path='/search/:query' exact>
           <SearchResults results={searchResults} />
         </Route>
@@ -108,7 +113,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   getSearchResults: (query, token) => dispatch(getSearchResults(query, token)),
-  getAccessToken: () => dispatch({ type: 'GET_ACCESS_TOKEN' }),
+  getAccessToken: (token) => dispatch({ type: 'GET_ACCESS_TOKEN', payload: token }),
   getUserData: (token) => dispatch(getUserData(token))
 });
 

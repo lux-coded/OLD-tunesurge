@@ -7,7 +7,7 @@ const initialToken = '';
 export const getLoginCode = (state = initialCode, action) => {
   switch (action.type) {
     case GET_LOGIN_CODE:
-      return action.payload
+      return action.payload;
     default:
       return state;
   }
@@ -16,7 +16,7 @@ export const getLoginCode = (state = initialCode, action) => {
 export const getAccessToken = (state = initialToken, action) => {
   switch (action.type) {
     case GET_ACCESS_TOKEN:
-      return action.payload
+      return action.payload;
     default:
       return state;
   }

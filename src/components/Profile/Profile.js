@@ -14,8 +14,9 @@ class Profile extends React.Component {
     this.fetchUserTopArtists();
   }
 
-  fetchUserTopTracks = () => {
-    axios(`https://api.spotify.com/v1/me/top/tracks`, {
+  fetchUserTopTracks = async () => {
+    if (Object.keys(this.props.accessToken).length === 0) return;
+    await axios(`https://api.spotify.com/v1/me/top/tracks`, {
       headers: {
         'Authorization': `Bearer ${this.props.accessToken}`, // Access Token from Redux store.
         'Accept': 'application/json',
@@ -30,8 +31,9 @@ class Profile extends React.Component {
     })
   }
 
-  fetchUserTopArtists = () => {
-    axios(`https://api.spotify.com/v1/me/top/artists`, {
+  fetchUserTopArtists = async () => {
+    if (Object.keys(this.props.accessToken).length === 0) return;
+    await axios(`https://api.spotify.com/v1/me/top/artists`, {
       headers: {
         'Authorization': `Bearer ${this.props.accessToken}`, // Access Token from Redux store.
         'Accept': 'application/json',

@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 import axios from 'axios';
 import history from '../history.js';
+
+// import { getAccessToken } from '../actions/authActions.js';
 
 const useAuth = function (code) {
   const [ accessToken, setAccessToken ] = useState();
@@ -14,17 +17,20 @@ const useAuth = function (code) {
     if (!code) return;
 
     axios
-      .post(`${requestURL}/login`, {
+      .post(`${requestURL}login`, {
         code
       })
       .then((res) => {
+        console.log(requestURL);
         setAccessToken(res.data.accessToken);
         setRefreshToken(res.data.refreshToken);
         setExpiresIn(res.data.expiresIn);
+        // getAccessToken(res.data.accessToken);
         history.push(`/`);
       })
       .catch((err) => {
-        window.location = '/';
+        console.log(err);
+        // window.location = '/';
       })
 
   }, [code]);
@@ -36,7 +42,7 @@ const useAuth = function (code) {
     const timeout = setTimeout(function () {
 
       axios
-        .post(`${requestURL}/refresh`, {
+        .post(`${requestURL}refresh`, {
           refreshToken,
         })
         .then((res) => {
@@ -55,5 +61,9 @@ const useAuth = function (code) {
 
   return accessToken;
 }
+
+// const mapDispatchToProps = (dispatch) => ({
+//   getAccessToken: () => dispatch({ type: 'GET_ACCESS_TOKEN' })
+// });
 
 export default useAuth;

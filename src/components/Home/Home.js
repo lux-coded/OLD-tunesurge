@@ -10,7 +10,7 @@ class Home extends React.Component {
   state = { newReleases: [] }
 
   componentDidMount() {
-    this.fetchNewResults();
+    // this.fetchNewResults();
   }
 
   fetchNewResults = async () => {
