@@ -27,6 +27,7 @@ class App extends React.Component {
           <Route path='/search/:query' exact component={Dashboard} />
           <Route path='/artists/:id' exact component={Dashboard} />
           <Route path='/album/:id' exact component={Dashboard} />
+          <Route path='/playlist/:id' exact component={Dashboard} />
         </Switch>
       </Router>
     );

@@ -3,12 +3,20 @@ import { Link } from 'react-router-dom';
 import './ResultCard.scss';
 
 class ResultCard extends React.Component {
-  render() {
-    const artists = this.props.result.artists.map((artist) => {
-        return <p key={artist.id} className='artist-title-container'><Link to={`/artists/${artist.id}`} value={artist.name} className='artist-title'>{artist.name}</Link></p>
-          });
 
-    const resultData = this.props.result;
+  checkResultType(resultData) {
+    if (resultData.added_by) {
+      return this.props.result.track;
+    }
+    if (!resultData.added_by) {
+      return this.props.result;
+    }
+  }
+
+  render() {
+
+
+    const resultData = this.checkResultType(this.props.result);
     const { name: trackName, duration_ms } = resultData;
 
     function millisToMinutesAndSeconds(millis) {
@@ -19,6 +27,10 @@ class ResultCard extends React.Component {
 
     const image = resultData.album ? resultData.album.images[2].url : null;
     // const albumArt = this.props.result.album.images[2].url;
+
+    const artists = resultData.artists.map((artist) => {
+      return <p key={artist.id} className='artist-title-container'><Link to={`/artists/${artist.id}`} value={artist.name} className='artist-title'>{artist.name}</Link></p>
+    });
 
     return (
       <div className={image ? 'result-card top-tracks' : 'result-card album-tracks'}>

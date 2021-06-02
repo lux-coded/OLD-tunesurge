@@ -11,22 +11,21 @@ import SearchBar from '../SearchBar/SearchBar.js';
 import SearchResults from '../SearchResults/SearchResults.js';
 import ArtistPage from '../ArtistPage/ArtistPage.js';
 import AlbumPage from '../AlbumPage/AlbumPage.js';
+import PlaylistPage from '../PlaylistPage/PlaylistPage.js';
 import Home from '../Home/Home.js';
 
 import getSearchResults from '../../actions/getSearchResults.js';
 import getUserData from '../../actions/getUserData.js';
-import { getAccessToken } from '../../actions/authActions.js';
 
 import './Dashboard.scss';
 
 const Dashboard = ({ getSearchResults, searchResults, getUserData, getAccessToken }) => {
   const [ avatar, setAvatar ] = useState();
   const [ userData, setUserData ] = useState({});
-  const [ newReleases, setNewReleases ] = useState({});
   const loginCode = useSelector( state => state.getLoginCode );
   const accessToken = useAuth( loginCode );
 
-  useEffect(() => {
+  useEffect(function() {
 
     if (!accessToken) return;
     getUserData(accessToken);
@@ -108,6 +107,7 @@ const Dashboard = ({ getSearchResults, searchResults, getUserData, getAccessToke
         </Route>
         <Route path='/album/:id' exact component={AlbumPage} />
         <Route path='/artists/:id' exact component={ArtistPage} />
+        <Route path='/playlist/:id' exact component={PlaylistPage} />
       </div>
     </section>
   );

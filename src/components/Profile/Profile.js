@@ -41,11 +41,12 @@ class Profile extends React.Component {
       },
     })
     .then((res) => {
-      this.setState({ userTopArtists: res.data.items })
+      this.setState({ userTopArtists: res.data.items });
     })
     .catch((err) => {
       console.log(err);
     })
+
   }
 
   render() {

@@ -9,14 +9,10 @@ const AlbumPage = ({ accessToken, match }) => {
   const [ albumData, setAlbumData ] = useState({});
   const [ albumImage, setAlbumImage ] = useState('');
   const [ albumTracks, setAlbumTracks ] = useState([]);
+  const albumId = match.params.id;
 
   useEffect(() => {
-    const albumId = match.params.id;
-    getAlbumData(albumId);
-  }, [])
-
-  const getAlbumData = async (id) => {
-    axios(`https://api.spotify.com/v1/albums/${id}`, {
+    axios(`https://api.spotify.com/v1/albums/${albumId}`, {
       headers: {
         'Authorization': `Bearer ${accessToken}`, // Access Token from Redux store.
         'Accept': 'application/json',
@@ -32,9 +28,9 @@ const AlbumPage = ({ accessToken, match }) => {
     .catch((err) => {
       console.log(err);
     })
-  }
+  }, [])
 
-  const displayAlbumTracks = async (tracks) => {
+  const displayAlbumTracks = (tracks) => {
     try {
       const resultMap = tracks.map((result) => {
         return <ResultCard result={result} key={result.id}/>;

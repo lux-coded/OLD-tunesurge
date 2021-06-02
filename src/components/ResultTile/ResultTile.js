@@ -25,17 +25,20 @@ class ResultTile extends React.Component {
     if (resultData.type === 'track') {
       return `/album/${resultData.album.id}`;
     }
+    if (resultData.type === 'playlist') {
+      return `/playlist/${resultData.id}`;
+    }
   }
 
   render() {
 
     const resultData = this.props.result;
-    const { name, type } = resultData;
-    const image = resultData.album ? resultData.album.images[1].url : resultData.images[1].url;
+    const { name } = resultData;
+    const image = resultData.album ? resultData.album.images[1].url : resultData.images[0].url;
 
     return (
       <Link to={this.resultType(resultData)} className='result-tile'>
-        <img src={image}></img>
+        <img src={image} alt='result'></img>
         {
 
           resultData.artists ?  // Checks if current data loop contains 'artists' property.

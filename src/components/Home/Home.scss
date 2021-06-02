@@ -1,11 +1,35 @@
+@import '../../styles/variables.scss';
+
 #home {
   padding: 2rem;
 
-  .home-categories {
+  .home-section {
+    padding: 2rem 0;
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     grid-gap: 2rem;
-    grid-row-gap: 4rem;
+    grid-row-gap: 2rem;
+
+    .playlist-tile {
+      color: $main-text-color;
+      text-align: center;
+      background-color: $background-terciary;
+      text-decoration: none;
+      height: 300px;
+      padding: 2rem;
+      transition: $main-transition;
+      border-radius: 0.5rem;
+      overflow: hidden;
+
+      img {
+        width: 150px;
+      }
+
+      &:hover {
+        background-color: $background-hover;
+        cursor: pointer;
+      }
+    }
 
     .result-tile {
       text-align: center;
@@ -15,7 +39,7 @@
 
 @media screen and (max-width: 1700px) {
   #home {
-    .home-categories {
+    .home-section {
       grid-template-columns: repeat(5, 1fr);
     }
   }
@@ -23,7 +47,7 @@
 
 @media screen and (max-width: 1500px) {
   #home {
-    .home-categories {
+    .home-section {
       grid-template-columns: repeat(4, 1fr);
       grid-row-gap: 2rem;
     }
@@ -32,7 +56,7 @@
 
 @media screen and (max-width: 1250px) {
   #home {
-    .home-categories {
+    .home-section {
       grid-template-columns: repeat(3, 1fr);
     }
   }
@@ -40,7 +64,7 @@
 
 @media screen and (max-width: 1000px) {
   #home {
-    .home-categories {
+    .home-section {
       grid-template-columns: repeat(2, 1fr);
       grid-gap: 1rem;
       grid-row-gap: 2rem;
@@ -50,7 +74,7 @@
 
 @media screen and (max-width: 600px) {
   #home {
-    .home-categories {
+    .home-section {
       grid-template-columns: 1fr;
       grid-row-gap: 1rem;
     }

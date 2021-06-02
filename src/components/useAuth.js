@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { connect } from 'react-redux';
 import axios from 'axios';
 import history from '../history.js';
 
@@ -33,7 +32,7 @@ const useAuth = function (code) {
         // window.location = '/';
       })
 
-  }, [code]);
+  }, [ code, requestURL ]);
 
   useEffect(() => {
 
@@ -57,7 +56,7 @@ const useAuth = function (code) {
 
     return () => clearTimeout(timeout);
 
-  }, [refreshToken, expiresIn]);
+  }, [refreshToken, expiresIn, requestURL]);
 
   return accessToken;
 }

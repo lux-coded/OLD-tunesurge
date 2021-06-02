@@ -87,7 +87,7 @@ class ArtistPage extends React.Component {
   renderAlbums = () => {
     if (Object.keys(this.state.albums).length === 0) return;
 
-    let albumSet = new Set(this.state.albums.map(album => album.name));
+    // let albumSet = new Set(this.state.albums.map(album => album.name));
 
     const albums = this.state.albums.map((album) => {
       return <ResultTile key={album.id} result={album} />
