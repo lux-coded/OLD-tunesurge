@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import './AlbumPage.scss';
 
-import getAlbumData from '../../actions/getAlbumData.js';
-
 import ResultCard from '../ResultCard/ResultCard.js';
 
 const AlbumPage = ({ accessToken, match }) => {
@@ -66,4 +64,4 @@ const mapStateToProps = (state) => ({
   albumData: state.getAlbumData
 })
 
-export default connect(mapStateToProps, { getAlbumData })(AlbumPage);
+export default connect(mapStateToProps)(AlbumPage);
