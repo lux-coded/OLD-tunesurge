@@ -17,7 +17,7 @@ const getUserData = (token) => {
     })
     .then((res) => {
       console.log(res);
-      dispatch(saveUserData(res))
+      dispatch(saveUserData(res.data))
     })
     .catch((err) => {
       console.log(err);

@@ -22,6 +22,7 @@ import './Dashboard.scss';
 const Dashboard = ({ getSearchResults, searchResults, getUserData, getAccessToken }) => {
   const [ avatar, setAvatar ] = useState();
   const [ userData, setUserData ] = useState({});
+  const [ newReleases, setNewReleases ] = useState({});
   const loginCode = useSelector( state => state.getLoginCode );
   const accessToken = useAuth( loginCode );
 
@@ -45,7 +46,7 @@ const Dashboard = ({ getSearchResults, searchResults, getUserData, getAccessToke
     .then((res) => {
       setUserData(res.data);
       setAvatar(res.data.images[0].url);
-      sessionStorage.setItem('currentUser', res.data);
+      sessionStorage.setItem('currentUser', JSON.stringify(res.data));
     })
     .catch((err) => {
       console.log(err);
@@ -80,18 +81,23 @@ const Dashboard = ({ getSearchResults, searchResults, getUserData, getAccessToke
           </Link>
           <div className='dashboard-link'>
             <span className="material-icons">
+              check_circle
+            </span>
+            Recommended
+          </div>
+          <div className='dashboard-link'>
+            <span className="material-icons">
               library_music
             </span>
             Playlists
           </div>
           <hr></hr>
-          <h4>Favorites</h4>
           <h4>Recommended</h4>
         </div>
       </div>
       <div id='dashboard-panel' className='dashboard-card'>
         <Route path='/' exact>
-          <Home userData={userData}/>
+          <Home userData={userData} token={accessToken}/>
         </Route>
         <Route path='/profile' exact>
           <Profile token={accessToken}/>

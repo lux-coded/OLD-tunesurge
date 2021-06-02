@@ -17,10 +17,6 @@ class App extends React.Component {
     this.props.getAccessToken(savedAccessToken);
   }
 
-  checkSession = () => {
-    if (this.state.savedAccessToken || code) return true;
-  }
-
   render() {
     return (
       <Router history={history}>

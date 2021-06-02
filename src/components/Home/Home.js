@@ -1,59 +1,58 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 
-import getNewReleases from '../../actions/getNewReleases.js';
+import ResultTile from '../ResultTile/ResultTile.js';
 
-// import ResultTile from '../ResultTile/ResultTile.js';
+import './Home.scss';
 
-class Home extends React.Component {
-  state = { newReleases: [] }
+const Home = ({ accessToken, userData }) => {
 
-  componentDidMount() {
-    // this.fetchNewResults();
+  const [ newReleases, setNewReleases ] = useState([]);
+
+  useEffect(() => {
+    fetchNewReleases();
+  }, [ accessToken ]);
+
+  async function fetchNewReleases() {
+    await axios('https://api.spotify.com/v1/browse/new-releases', {
+      headers: {
+        'Authorization': `Bearer ${accessToken}`,
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      }
+    })
+    .then((res) => {
+      setNewReleases(res.data.albums.items);
+    })
   }
 
-  fetchNewResults = async () => {
-      await axios('https://api.spotify.com/v1/browse/categories', {
-        headers: {
-          'Authorization': `Bearer ${this.props.accessToken}`,
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-        }
-      })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-  }
+  const renderNewReleases = () => {
+    // if (this.state.newReleases.length !== 0) return;
 
-  render() {
+    const newReleasesMap = newReleases.map((result) => {
+      return <ResultTile key={result.id} result={result} />
+    });
 
-    return (
-      <section id='home'>
-        <div>
-          <h2>New Releases</h2>
-          {/* {
-            newReleasesResults.length ?
-            newReleasesResults :
-            <span>Loading...</span>
-            }
-          {newReleasesResults} */}
-        </div>
-      </section>
-    );
+    console.log(newReleasesMap);
+
+    return newReleasesMap;
+
   }
+  return (
+    <section id='home'>
+      <h2>New Releases</h2>
+      <div className='home-categories'>
+        {renderNewReleases()}
+      </div>
+      <br></br>
+      <h2>Categories</h2>
+    </section>
+  );
 }
 
 const mapStateToProps = (state) => ({
   accessToken: state.getAccessToken,
-  newReleases: state.getNewReleases
+  userData: state.getUserData
 })
-
-const mapDispatchToProps = (dispatch) => ({
-  getNewReleases: (token) => dispatch(getNewReleases(token)),
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps)(Home);

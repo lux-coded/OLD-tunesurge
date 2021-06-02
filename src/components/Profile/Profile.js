@@ -49,8 +49,8 @@ class Profile extends React.Component {
   }
 
   render() {
-    const { display_name } = this.props.userData.data;
-    const avatar = this.props.userData.data.images[0].url;
+    const { display_name } = this.props.userData;
+    const avatar = this.props.userData.images[0].url;
 
     const topTracks = this.state.userTopTracks.map((track) => {
       return <ResultTile key={track.id} result={track} />

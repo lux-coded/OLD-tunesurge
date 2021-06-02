@@ -51,7 +51,7 @@ class ArtistPage extends React.Component {
         'Content-Type': 'application/json',
       },
       params: {
-        market: `${this.props.userData.data.country}`
+        market: `${this.props.userData.country}`
       }
     })
     .then((res) => {
@@ -71,7 +71,7 @@ class ArtistPage extends React.Component {
         'Content-Type': 'application/json',
       },
       params: {
-        market: `${this.props.userData.data.country}`,
+        market: `${this.props.userData.country}`,
         include_groups: 'album',
         limit: 50
       }

@@ -25,7 +25,7 @@ const useAuth = function (code) {
         setAccessToken(res.data.accessToken);
         setRefreshToken(res.data.refreshToken);
         setExpiresIn(res.data.expiresIn);
-        // getAccessToken(res.data.accessToken);
+        sessionStorage.setItem('accessToken', res.data.accessToken);
         history.push(`/`);
       })
       .catch((err) => {
