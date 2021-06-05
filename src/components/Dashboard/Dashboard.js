@@ -78,7 +78,7 @@ const Dashboard = ({ getSearchResults, searchResults, getUserData, getAccessToke
             </span>
             My Profile
           </Link>
-          <div className='dashboard-link'>
+          {/* <div className='dashboard-link'>
             <span className="material-icons">
               check_circle
             </span>
@@ -89,7 +89,7 @@ const Dashboard = ({ getSearchResults, searchResults, getUserData, getAccessToke
               library_music
             </span>
             Playlists
-          </div>
+          </div> */}
           <hr></hr>
           <h4>Recommended</h4>
         </div>
