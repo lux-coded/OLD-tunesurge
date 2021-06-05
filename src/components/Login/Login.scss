@@ -2,11 +2,11 @@
 
 .welcome-header {
   transition: $main-transition;
-  padding: 5% 20%;
+  padding: 0 20%;
   text-align: center;
 
   .welcome-quote {
-    margin-bottom: 10rem;
+    margin: 20% 0;
   }
 
   h1 {
@@ -46,6 +46,28 @@
 
     &:visited {
       color: white;
+    }
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .welcome-header{
+    padding: 0 10%;
+    .welcome-quote {
+      h1{
+        font-size: 3rem;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .welcome-header{
+    padding: 5%;
+    .welcome-quote {
+      h1{
+        font-size: 2.5rem;
+      }
     }
   }
 }
