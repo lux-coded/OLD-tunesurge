@@ -19,7 +19,7 @@ class DashboardControls extends React.Component {
     return (
       <div id='mobile-dashboard-sidebar' className='mobile-dashboard-card hidden'>
         <div id='mobile-dashboard-profile'>
-          <h1>{this.props.userData.display_name}</h1>
+          <h1 style={{ paddingLeft: '1rem'}}>{this.props.userData.display_name}</h1>
         </div>
         <SearchBar onSubmit={this.fetchSearchResults}/>
         <div id='mobile-dashboard-controls'>

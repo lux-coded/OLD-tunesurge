@@ -78,20 +78,6 @@ const Dashboard = ({ getSearchResults, searchResults, getUserData, getAccessToke
             </span>
             My Profile
           </Link>
-          {/* <div className='dashboard-link'>
-            <span className="material-icons">
-              check_circle
-            </span>
-            Recommended
-          </div>
-          <div className='dashboard-link'>
-            <span className="material-icons">
-              library_music
-            </span>
-            Playlists
-          </div> */}
-          <hr></hr>
-          <h4>Recommended</h4>
         </div>
       </div>
       <div id='dashboard-panel' className='dashboard-card'>
