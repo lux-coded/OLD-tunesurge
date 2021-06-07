@@ -35,9 +35,6 @@ class DashboardControls extends React.Component {
             </span>
             My Profile
           </Link>
-          <hr></hr>
-          <h4>Favorites</h4>
-          <h4>Recommended</h4>
         </div>
       </div>
     );
