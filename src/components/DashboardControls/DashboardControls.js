@@ -19,7 +19,6 @@ class DashboardControls extends React.Component {
     return (
       <div id='mobile-dashboard-sidebar' className='mobile-dashboard-card hidden'>
         <div id='mobile-dashboard-profile'>
-          <img src='' alt='avatar'></img>
           <h1>{this.props.userData.display_name}</h1>
         </div>
         <SearchBar onSubmit={this.fetchSearchResults}/>
@@ -36,12 +35,6 @@ class DashboardControls extends React.Component {
             </span>
             My Profile
           </Link>
-          <div className='mobile-dashboard-link'>
-            <span className="material-icons">
-              library_music
-            </span>
-            Playlists
-          </div>
           <hr></hr>
           <h4>Favorites</h4>
           <h4>Recommended</h4>
